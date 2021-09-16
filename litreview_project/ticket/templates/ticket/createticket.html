@@ -4,15 +4,13 @@
 
 <h2>Page de creation d'un ticket</h2>
 
-<form method="POST" action="">
+<form method="POST" action="" enctype="multipart/form-data" >
 	{%csrf_token%}
-	
+
 	{{ ticket_form.as_p}}
 
-	<a class="btn btn-primary" type="submit" href="{% url 'index' %}" role="button">Envoyer</a>
-
 	<div class="d-flex justify-content-center mt-3 login_container">
-		<input class="btn login_btn" type="submit" value="Envoyer">
+		<input class="btn btn-primary" type="submit" value="Envoyer">
 	</div>
 </form>
 
