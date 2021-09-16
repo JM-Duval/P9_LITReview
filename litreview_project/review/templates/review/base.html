@@ -8,7 +8,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-				<a class="nav-item nav-link active" href="#">Acceuil <span class="sr-only"></span></a>
+				<a class="nav-item nav-link active" href="{% url 'index' %}">Acceuil <span class="sr-only"></span></a>
 				<a class="nav-item nav-link" href="#">Flux</a>
 				<a class="nav-item nav-link" href="#">Posts</a>
 				<a class="nav-item nav-link" href="#">Abonnements</a>
@@ -21,7 +21,6 @@
 	
 </head>
 	<body>
-		<a class="btn btn-primary" href="{% url 'ticket:ticket' %}" role="button">Creer un ticket</a>
 		<!-- As a heading -->
 		<nav class="navbar navbar-light bg-light">
 		  <div class="container-fluid">

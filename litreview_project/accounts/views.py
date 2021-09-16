@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Projet
+#from .models import Projet
 #from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from .forms import CreateUser
@@ -26,11 +26,6 @@ def loginPage(request):
 		user=authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
-			#return redirect('review:index')
-			#return redirect('review/index')
-			#return redirect('review/index.html')
-			#return redirect('review:index')
-			#return redirect('/')
 			return redirect('/')
 		else:
 			messages.infos(request, "Utilisateur et mot de passe incorrects	")

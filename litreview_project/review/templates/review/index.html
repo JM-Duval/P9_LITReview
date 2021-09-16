@@ -1,16 +1,17 @@
 {% extends 'review/base.html' %}
-
 {% block content %}
 
+<a class="btn btn-primary" href="{% url 'ticket:ticket' %}" role="button">Creer un ticket</a>
+<a class="btn btn-primary" href="{% url 'review' %}" role="button">Demander une critique</a>
 <div class="row">
-	
-	{% for x in projet %}
-	<h1>{{ x.titre }}</h1>
+
+	{% for x in ticket %}
+	<h1>{{ x.title }}</h1>
 	<div class="col">
 		<div class="card" style="width: 18rem;">
-			<img src="{{ x.image_url }}" class="card-img-top" alt="...">
+			<img src="{{ x.image }}" class="card-img-top" alt="...">
 			<div class="card-body">
-				<h5 class="card-title">{{ x.titre }}</h5>
+				<h5 class="card-title">{{ x.title }}</h5>
 				<p class="card-text">{{ x.description }}</p>
 				<a href="#" class="btn btn-primary">Go to details</a>
 			</div>
@@ -18,5 +19,7 @@
 	</div>
 
 	{% endfor %}
+
+
 </div>
 {% endblock %}
