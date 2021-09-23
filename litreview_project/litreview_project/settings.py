@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'review.apps.ReviewConfig',
     'ticket.apps.TicketConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -89,6 +90,7 @@ DATABASES = {
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

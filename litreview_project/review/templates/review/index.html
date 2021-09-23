@@ -1,31 +1,32 @@
 {% extends 'review/base.html' %}
+
 {% load static %}
 
 {% block content %}
 
 <div class="d-flex justify-content-center">
-	<a class="btn btn-outline-secondary" href="{% url 'ticket:ticket' %}" role="button">Creer un ticket</a>
-	<a class="btn btn-outline-secondary" href="{% url 'review' %}" role="button">Demander une critique</a>
+	<a class="btn btn-outline-secondary mx-3" href="{% url 'ticket:ticket' %}" role="button">Creer un ticket</a>
+	<a class="btn btn-outline-secondary mx-3" href="{% url 'review' %}" role="button">Demander une critique</a>
 </div>
 
 <div class="row">
 
-	{% for x in ticket %}
-	<div class="d-flex justify-content-center mt-3 login_container">
-		<div class="card" style="width: 50%;">
-			
-			<div class="card-body">
-				<p class="card-text">{{ x.user }} a demandé une critique le {{ x.time_created }}</p> 
-				<h5 class="card-title">{{ x.title }}</h5>
-				<p class="card-text">{{ x.description }}</p>
-				<img src="{% get_media_prefix %}{{ x.image }}" class="card-img-top" alt="...">
-				<a href="#" class="btn btn-outline-secondary">Créer une critique</a>
-			</div>
-		</div>
-	</div>
-
+	{% for post in posts %}
+	{% include 'review/review.html' %}
+	{% include 'ticket/ticket.html' %}
 	{% endfor %}
 
-
+	{% for ticket in tickets %}
+	<div class="container">
+		<div class="container-sm border mt-3 p-3" style="width: 60%;">
+		
+		<a href="{% url 'review' ticket.id %}" class="btn btn-outline-secondary mt-3">Répondre à ce ticket</a>
+		</div>
+	</div>
+	{% endfor %}
+	
 </div>
 {% endblock %}
+
+
+

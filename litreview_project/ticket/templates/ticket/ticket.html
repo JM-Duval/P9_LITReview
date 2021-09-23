@@ -1,0 +1,13 @@
+{% block content %}
+
+{% load static %}
+
+<p class="text"><strong>{{ ticket.user }}</strong> a demandé une critique le {{ ticket.time_created }}</p>  
+<h5 class="text">{{ ticket.title }}</h5>
+<p class="text">{{ ticket.description }}</p>
+<img src="{% get_media_prefix %}{{ ticket.image }}" class="card-img-top" alt="...">
+<div class="d-flex justify-content-end">
+</div>
+
+{% endblock %}
+

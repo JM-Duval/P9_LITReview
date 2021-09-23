@@ -1,17 +1,12 @@
-{% extends 'review/base.html' %}
-
+{% extends 'review/base.html' %} 
+ 
 {% block content %}
 
-<h2>Page de creation d'un ticket</h2>
-
-<form method="POST" action="" enctype="multipart/form-data" >
-	{%csrf_token%}
-
-	{{ ticket_form.as_p}}
-
-	<div class="d-flex justify-content-center mt-3 login_container">
-		<input class="btn btn-primary" type="submit" value="Envoyer">
-	</div>
-</form>
+<h4 class='text-center'>Créer un ticket</h4> 
+{% include 'ticket/ticketform.html' %}
+<div class="row">
+	<input class="col-md-2 offset-md-10" type="submit" value="Envoyer">
+</div>
 
 {% endblock %}
+
