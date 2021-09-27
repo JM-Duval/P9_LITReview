@@ -9,15 +9,16 @@
 	{% include 'ticket/ticketform.html' with ticket_form=ticket_form %}
 
 </div>
+<form action="" method="POST">
+	<div class="border mt-3">
+		<h6>Critique</h6>
+		{%csrf_token%}
+		{{ review_form.as_p }}
 
-<div class="border mt-3">
-	<h6>Critique</h6>
-
-	{% include 'review/createreview.html' with review_form=review_form %}
-
-	<div class="row">
-		<input class="col-md-2 offset-md-9 mb-3" type="submit" value="Envoyer">
+		<div class="row">
+			<input class="col-md-2 offset-md-9 mb-3" type="submit" value="Envoyer">
+		</div>
 	</div>
-</div>
+</form>
 
 {% endblock %}	

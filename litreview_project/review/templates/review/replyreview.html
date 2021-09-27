@@ -10,11 +10,12 @@
 		<h4>Creer une critique</h4>
 		
 		<div class="container-sm border mt-3 p-3" style="width: 70%;">
-			{% include 'ticket/ticket.html' %}
+			{% include 'ticket/ticket.html' with ticket=ticket %}
 		</div>
 		
 		<div class="container-sm border mt-3 p-3" style="width: 100%;">
 			<h6>Critique</h6>
+			
 			{{ review_form.as_p }}
 
 			<div class="row">

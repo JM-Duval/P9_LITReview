@@ -27,8 +27,8 @@ def loginPage(request):
 		if user is not None:
 			login(request, user)
 			return redirect('/')
-		else:
-			messages.infos(request, "Utilisateur et mot de passe incorrects	")
+		#else:
+		#	messages.infos(request, "Utilisateur et mot de passe incorrects	")
 	#return render(request, 'accounts:login', context)
 	return render(request, 'accounts/login.html', context)
 

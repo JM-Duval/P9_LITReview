@@ -2,11 +2,22 @@
  
 {% block content %}
 
-<h4 class='text-center'>Créer un ticket</h4> 
-{% include 'ticket/ticketform.html' %}
-<div class="row">
-	<input class="col-md-2 offset-md-10" type="submit" value="Envoyer">
-</div>
+<h4 class='text-center'>Créer un ticket.</h4> 
+
+
+<form action="" method="POST">
+	{% csrf_token %}
+
+	{{ ticket_form.as_p }}
+		
+	<button class="col-md-2 offset-md-10" type="submit" value="upvote">Envoyer</button>
+
+</form>
+
 
 {% endblock %}
+
+
+
+
 
