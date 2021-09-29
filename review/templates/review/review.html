@@ -4,7 +4,7 @@
 
 
 <div class="container-sm border mt-3 p-3" style="width: 60%;">
-	<p>Vous avez publié une critique </p>
+	<p>{{ review.view }} à publié une critique </p>
 	<p>{{ review.time_created }}</p>
 	<strong>{{ review.headline }}</strong>
 	{% with ''|center:review.rating as range %}

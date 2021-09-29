@@ -1,0 +1,70 @@
+{% extends 'review/base.html' %} 
+
+{% block content %}
+
+<h4> My Posts </h4>
+
+{% load static %}
+
+
+
+{% for post in posts %}
+{% if post.content_type == 'REVIEW' %}
+	<div class="container-sm border mt-3 p-3" style="width: 60%;">
+		{% if post.user == user %}
+			<p> Vous avez publié une critique </p>
+		{% else %}
+			{{ post.user }} a publié une critique.
+		{% endif %}
+		<p>{{ post.time_created }}</p>
+		<strong>{{ post.headline }}</strong>
+		{% with ''|center:post.rating as range %}
+		{% for x in range %}
+		<span>&#9733</span>
+		{% endfor %}
+		{% endwith %}
+		
+
+		<p class="text">{{ post.body }}</p>
+
+		<div class="container-sm border mt-3 p-3" style="width: 95%;">
+			{% if post.ticket.user == user %}
+				<p> Ticket - Vous </p>			
+			{% else %}
+				<p>Ticket - {{ post.ticket.user}} </p>
+			{% endif %}
+			<p>{{ post.ticket.title }}</p>
+			<img src="{% get_media_prefix %}{{ post.ticket.image }}" class="card-img-top" style="width: 40%" alt="...">
+		</div>
+		<div class="d-flex justify-content-end">
+			<button class="btn btn-outline-secondary m-3" type="submit" value="upvote">Modifier</button>
+			<button class="btn btn-outline-secondary m-3" type="submit" value="upvote">Supprimer</button>
+		</div>
+	</div>
+	
+{% endif %}
+
+{% if post.content_type == 'TICKET' %}
+	{% load static %}
+
+	<div class="container-sm border mt-3 p-3" style="width: 60%;">
+		<p class="text">Vous avez publié un ticket {{ post.time_created }}</p>  
+		{{ post.response }}
+		<h5 class="text">{{ post.title }}</h5>
+		<p class="text">{{ post.description }}</p>
+		<img src="{% get_media_prefix %}{{ post.image }}" class="card-img-top" style="width: 40%"; alt="...">
+
+		<div class="d-flex justify-content-end">
+			<button class="btn btn-outline-secondary m-3" type="submit" value="upvote">Modifier</button>
+			<button class="btn btn-outline-secondary m-3" type="submit" value="upvote">Supprimer</button>
+		</div>
+	</div>
+
+{% endif %}
+
+{% endfor %}
+
+
+
+
+{% endblock %}
