@@ -1,0 +1,26 @@
+{% extends 'review/base.html' %}
+
+{% block content %}
+
+<h4 class='text-center'>Créer une critique</h4>
+<div class="border">
+	<h6>Livre/Article</h6>
+
+
+</div>
+<form method="POST" action="" enctype="multipart/form-data">
+	<div class="input-group-append">
+		{% include 'ticket/ticketform.html' with ticket_form=ticket_form %}
+		<div class="border mt-3">
+			<h6>Critique</h6>
+			{%csrf_token%}
+			{{ review_form.as_p }}
+
+			<div class="row">
+				<input class="col-md-2 offset-md-9 mb-3" type="submit" value="Envoyer">
+			</div>
+		</div>
+	</div>
+</form>
+
+{% endblock %}	

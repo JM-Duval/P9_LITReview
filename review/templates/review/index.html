@@ -1,0 +1,28 @@
+{% extends 'review/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center" style="width: 100%;">
+	<a class="btn btn-outline-secondary mx-3" href="{% url 'review' %}" role="button">Demander une critique</a>
+	<a class="btn btn-outline-secondary mx-3" href="{% url 'ticket:ticket' %}" role="button">Creer un ticket</a>
+</div>
+
+
+
+{% for post in posts %}
+
+	{% if post.content_type == 'TICKET' %}
+	{% include 'ticket/ticket.html' with ticket=post %}
+
+	{% elif post.content_type == 'REVIEW' %}
+	{% include 'review/review.html' with review=post %}
+
+	{% endif %}
+{% endfor %}
+
+
+{% endblock %}
+
+
