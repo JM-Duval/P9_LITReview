@@ -1,6 +1,5 @@
-from .models import Review
 from django.forms import ModelForm, TextInput, Textarea, RadioSelect
-
+from .models import Review
 
 
 class ReviewForm(ModelForm):
@@ -11,6 +10,7 @@ class ReviewForm(ModelForm):
         labels = {'headline':'Titre' , 'rating':'Note', 'body':'Commentaire'}
         widgets = {
             'headline': TextInput(attrs={'class': 'form-control'}),
-            'rating': RadioSelect(choices=CHOICES, attrs={'style':'display:inline-block'}),
+            'rating': RadioSelect(choices=CHOICES, 
+                attrs={'style':'display:inline-block'}),
             'body': Textarea(attrs={'name': 'evaluation','class': 'form-control'}),
             }

@@ -1,12 +1,11 @@
-from django import forms
+from itertools import chain
 from django.shortcuts import render, redirect
-from .models import Review
-from .forms import ReviewForm
+from django.db.models import CharField, Value
+from ticket.forms import TicketForm
 from ticket.models import Ticket
 from ticket.views import save_ticket
-from ticket.forms import TicketForm
-from itertools import chain
-from django.db.models import CharField, Value
+from .forms import ReviewForm
+from .models import Review
 
 
 def index(request):
@@ -17,16 +16,16 @@ def index(request):
     user = request.user
     if tickets.count():
         if reviews.count():
-            for review in reviews:
-                #free_tickets = tickets.exclude(title=review.ticket.title)
-                free_tickets = tickets.exclude(response=True)
-            posts = sorted(chain(reviews, free_tickets), key=lambda post: post.time_created, reverse=True)
-            return render(request, 'review/index.html', context={'posts':posts,
-                                                                 'user':user})
+            free_tickets = tickets.exclude(response=True)
+            posts = sorted(chain(reviews, free_tickets), key=lambda 
+            post: post.time_created, reverse=True)
+            return render(request, 'review/index.html', 
+                context={'posts':posts,'user':user})
         else:
-            posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
-            return render(request, 'review/index.html', context={'posts':posts,
-                                                                 'user':user})
+            posts = sorted(chain(reviews, tickets), key=lambda 
+                post: post.time_created, reverse=True)
+            return render(request, 'review/index.html', 
+                context={'posts':posts,'user':user})
     else:
         return render(request, 'review/index.html', {'tickets':tickets,
                                                      'reviews':reviews,})
@@ -40,6 +39,7 @@ def save_review(request, review_form, ticket):
  
  
 def review(request, ticket_id=None):
+    """2 possibilities : create review from ticket or without ticket"""
     if ticket_id is None: # Create ticket & review
         ticket_form = TicketForm(request.POST, request.FILES) 
         review_form = ReviewForm(request.POST)
@@ -50,9 +50,8 @@ def review(request, ticket_id=None):
             ticket.save()
             save_review(request, review_form, ticket)
             return redirect('/')
-        return render(request, 'review/askreview.html', {'review_form': review_form,
-                                                         'ticket_form': ticket_form})
-    
+        return render(request, 'review/askreview.html', 
+            {'review_form': review_form, 'ticket_form': ticket_form})
     else: # reply to ticket
         ticket = Ticket.objects.get(id__exact=ticket_id)
         review_form = ReviewForm(request.POST)
@@ -62,12 +61,11 @@ def review(request, ticket_id=None):
             ticket.response = True
             ticket.save()
             return redirect('/')
-        return render(request, 'review/replyreview.html', {'review_form': review_form,
-                                                           'ticket': ticket,
-                                                           'status': status})
+        return render(request, 'review/replyreview.html', 
+            {'review_form': review_form,'ticket': ticket,'status': status})
 
 
-def modifyreview(request, review_id):
+def modify_review(request, review_id):
     review = Review.objects.get(id__exact=review_id)
     ticket = review.ticket
     user = request.user
@@ -77,12 +75,11 @@ def modifyreview(request, review_id):
         if review_form.is_valid():
             review.save()
             return redirect('/')
-    return render(request, 'review/modifyreview.html', {'review_form':review_form,
-                                                        'ticket':ticket,
-                                                        'user':user})
+    return render(request, 'review/modifyreview.html', 
+        {'review_form':review_form,'ticket':ticket,'user':user})
 
 
-def deletereview(request, review_id):
+def delete_review(request, review_id):
     review = Review.objects.get(id__exact=review_id)
     ticket = review.ticket
     review.delete()
@@ -99,58 +96,12 @@ def modify_ticket_in_review(request, ticket_id):
             review_form = ReviewForm(instance=review)
             if request.method == 'POST':
                 review_form = ReviewForm(request.POST, instance=review)
-                ticket_form = TicketForm(request.POST, request.FILES, instance=ticket)
+                ticket_form = TicketForm(request.POST, request.FILES, 
+                    instance=ticket)
                 if ticket_form.is_valid():
                     ticket.save()
                 if review_form.is_valid():
                     review.save()
                 return redirect('/posts')
-
-    return render(request, 'review/modifyticketinreview.html', {'ticket_form':ticket_form,
-                                                                'ticket':ticket})
-
-
-
-"""
-def modifyreview(request, review_id):
-    review = Review.objects.get(id__exact=review_id)
-    ticket = review.ticket
-    user = request.user
-    review_form = ReviewForm(request.POST, instance=review)
-    if request.method == 'POST':
-        #review_form = ReviewForm(request.POST)
-        if review_form.is_valid():
-            #save_review(request, review_form, ticket)
-            #review.delete()
-            review.save()
-            return redirect('/')
-    return render(request, 'review/modifyreview.html', {'review_form':review_form,
-                                                        'ticket':ticket,
-                                                        'user':user})
-
-def modify_ticket_in_review(request, ticket_id):
-    ticket = Ticket.objects.get(id__exact=ticket_id)
-    reviews = Review.objects.all()
-    for review in reviews:
-        if review.ticket == ticket:
-            review_form = ReviewForm(instance=review)
-            ticket_form = TicketForm(instance=ticket)
-            if request.method == 'POST':
-                review_form = ReviewForm(request.POST)
-                ticket_form = TicketForm(request.POST, request.FILES)
-                if ticket_form.is_valid():
-                    save_ticket(request, ticket_form)
-                    ticket.delete()
-                if review_form.is_valid():
-                    new_ticket = Ticket.objects.last()
-                    new_ticket.response = True
-                    new_ticket.save()
-                    save_review(request, review_form, new_ticket)
-                    return redirect('/')
-
-    return render(request, 'review/modifyticketinreview.html', {'review_form':review_form,
-                                                                'ticket_form':ticket_form})
-
-
-
-"""
+    return render(request, 'review/modifyticketinreview.html', 
+        {'ticket_form':ticket_form, 'ticket':ticket})

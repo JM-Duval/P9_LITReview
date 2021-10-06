@@ -23,7 +23,7 @@ def ticket(request):
 	return render(request, 'ticket/createticket.html', {'ticket_form': ticket_form})
 
 
-def modifyticket(request, ticket_id):
+def modify_ticket(request, ticket_id):
 	ticket = Ticket.objects.get(id__exact=ticket_id)
 	ticket_form = TicketForm(instance=ticket)
 	if request.method == 'POST':
@@ -35,25 +35,7 @@ def modifyticket(request, ticket_id):
 														'ticket':ticket})
 
 
-def deleteticket(request, ticket_id):
+def delete_ticket(request, ticket_id):
 	ticket = Ticket.objects.get(id__exact=ticket_id)
 	ticket.delete()
 	return redirect('/')
-
-
-
-"""
-
-def modifyticketssssssss(request, ticket_id):
-	ticket = Ticket.objects.get(id__exact=ticket_id)
-	ticket_form = TicketForm(instance=ticket)
-	if request.method == 'POST':
-		ticket_form = TicketForm(request.POST, request.FILES)
-		if ticket_form.is_valid():
-			save_ticket(request, ticket_form)
-			ticket.delete()
-			return redirect('/')
-	return render(request, 'ticket/modifyticket.html', {'ticket_form':ticket_form,
-														'ticket':ticket})
-
-"""

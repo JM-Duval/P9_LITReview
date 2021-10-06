@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'review.apps.ReviewConfig',
     'ticket.apps.TicketConfig',
+    'posts.apps.PostsConfig',
+    'subscription.apps.SubscriptionConfig',
     'crispy_forms',
 ]
 
@@ -56,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     #'django.middleware.locale.Locale.Middleware'
-]
+]   
 
 ROOT_URLCONF = 'litreview_project.urls'
 
@@ -90,8 +92,8 @@ DATABASES = {
 }
 
 
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
-MEIDA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEIDA_ROOT = BASE_DIR/'media'
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'uni_form'
 

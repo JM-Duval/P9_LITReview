@@ -1,6 +1,4 @@
 from django.forms import ModelForm, TextInput
-from django.contrib.auth.models import User
-from django import forms 
 from .models import UserFollows
 
 
@@ -10,5 +8,5 @@ class UserFollowsForm(ModelForm):
 		fields = ['followed_user']
 		labels = {'followed_user':"Nom d'utilisateur"}
 		widgets = {
-            'followed_user': TextInput(attrs={'class': 'form-control'}),
+            'followed_user': TextInput(attrs={'class': 'form-control'})
         }

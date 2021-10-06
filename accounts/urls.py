@@ -1,12 +1,11 @@
 from django.urls import path
-#from django.contrib.auth import views 
 from . import views
 
 app_name = 'accounts'
 
 urlpatterns = [
-	path('inscription', views.inscriptionPage, name='inscription'),
+	path('inscription', views.inscription_page, name='inscription'),
 	#path('login', views.loginPage, name='login'),
-	path('logout', views.logoutUser, name='logout'),
+	path('logout', views.logout_user, name='logout'),
 	path('home', views.home, name='home'),
-]	
+]

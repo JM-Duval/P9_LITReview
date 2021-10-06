@@ -1,7 +1,6 @@
 from django.forms import ModelForm, TextInput, Textarea, FileInput
-from django.contrib.auth.models import User # utilisateur
-from django import forms  # formulaire
 from .models import Ticket
+
 
 class TicketForm(ModelForm):
 	class Meta:
