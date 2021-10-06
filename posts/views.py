@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from ticket.models import Ticket
 from review.models import Review
@@ -30,3 +30,7 @@ def posts (request):
 	posts = sorted(chain(reviews_user, tickets_user), key=lambda post: post.time_created, reverse=True)
 	return render(request, 'posts/posts.html', context={'posts':posts,
 														'user':user})
+
+
+
+

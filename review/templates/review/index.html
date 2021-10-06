@@ -14,10 +14,10 @@
 {% for post in posts %}
 
 	{% if post.content_type == 'TICKET' %}
-	{% include 'ticket/ticket.html' with ticket=post %}
+		{% include 'ticket/ticket.html' with ticket=post user=user %}
 
 	{% elif post.content_type == 'REVIEW' %}
-	{% include 'review/review.html' with review=post %}
+		{% include 'review/review.html' with review=post user=user %}
 
 	{% endif %}
 {% endfor %}

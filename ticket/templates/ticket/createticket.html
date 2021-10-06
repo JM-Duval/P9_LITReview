@@ -2,18 +2,19 @@
  
 {% block content %}
 
-<h4 class='text-center'>Créer un ticket.</h4> 
+<div class='container justify-content-center'>
+	<h4 class='text-center'>Créer un ticket.</h4> 
 
-<form method="POST" action="" enctype="multipart/form-data">
-	<div class="input-group-append">
-		{% csrf_token %}
+	<form method="POST" action="" enctype="multipart/form-data">
+		<div class="input-group-append">
+			{% csrf_token %}
 
-		{{ ticket_form.as_p }}
-		
-		<button class="col-md-2 offset-md-10" type="submit" value="upvote">Envoyer</button>
-	</div>
-</form>
-
+			{{ ticket_form.as_p }}
+			
+			<button class="col-md-2 offset-md-10" type="submit" value="upvote">Envoyer</button>
+		</div>
+	</form>
+</div>
 
 {% endblock %}
 

@@ -1,0 +1,27 @@
+{% extends 'review/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<h4 class='text-center'> Modification du ticket dans review </h4>
+<div class="border">
+	<form method="POST" action="" enctype="multipart/form-data">
+		<div class="input-group-append">
+			{%csrf_token%}
+
+			{{ ticket_form.title }}
+			{{ ticket_form.description }}
+			<div class="" style="width: 30%;">
+				<img src="{% get_media_prefix %}{{ ticket.image }}" class="card-img-top" alt="...">
+			</div>
+			{{ ticket_form.image }}
+
+			<div class="row">
+				<input class="col-md-2 offset-md-9 mb-3" type="submit" value="Envoyer">
+			</div>
+		</div>
+	</form>
+</div>
+
+{% endblock %}	
