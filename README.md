@@ -6,14 +6,14 @@ Ce programme est une version beta d'un site internet permettant aux utilisateurs
 
 Les objectifs de ce programme sont les suivants:
 
-● Connection et inscritpion - le site ne doit pas être accessible à un utilisateur non connecté.
-● Afficher un flux contenant les derniers tickets et avis des utilisateurs qu'ils suivent, classés par heure, les plus récents en premier.
-● Créer de nouveaux tickets pour demander une critique sur un livre/article.
-● Créer des avis en réponse aux tickets.
-● Créer des avis non en réponse à un ticket. Dans le cadre d'un processus en une étape, l'utilisateur créera un ticket, puis un avis répondant à son propre ticket.
-● Pouvoir afficher, modifier et supprimer ses propres tickets et avis,
-● Suivez d'autres utilisateurs en saisissant leur nom d'utilisateur,
-● Voir qui ils suivent et ne plus suivre qui ils veulent.
+ * Connection et inscritpion - le site ne doit pas être accessible à un utilisateur non connecté.
+ * Afficher un flux contenant les derniers tickets et avis des utilisateurs qu'ils suivent, classés par heure, les plus récents en premier.
+ * Créer de nouveaux tickets pour demander une critique sur un livre/article.
+ * Créer des avis en réponse aux tickets.
+ * Créer des avis non en réponse à un ticket. Dans le cadre d'un processus en une étape, l'utilisateur créera un ticket, puis un avis répondant à son propre ticket.
+ * Pouvoir afficher, modifier et supprimer ses propres tickets et avis,
+ * Suivez d'autres utilisateurs en saisissant leur nom d'utilisateur,
+ * Voir qui ils suivent et ne plus suivre qui ils veulent.
 
 ## Pour commencer
 
@@ -106,16 +106,18 @@ A l'endroit ou se situe votre dossier, exécuter la commande suivante:
 
 Losque vous allez lancer le programme depuis le terminal, vous allez voir apparaitre le texte ci dessous:
 
-```Watching for file changes with StatReloader
+```
+Watching for file changes with StatReloader
 Performing system checks...
 
 System check identified no issues (0 silenced).
 October 06, 2021 - 17:47:35
 Django version 3.2.6, using settings 'litreview_project.settings'
 Starting development server at http://127.0.0.1:8000/
-Quit the server with CTRL-BREAK.```
+Quit the server with CTRL-BREAK. 
+```
 
-Copié l'adresse ```http://127.0.0.1:8000/``` dans la barre de votre navigateur web. Vous devez accèder directement sur le site internet concerné.
+Copiez l'adresse ```http://127.0.0.1:8000/``` dans la barre de votre navigateur web. Vous devez accèder directement sur le site internet concerné.
 
 
 ## Fabriqué avec
